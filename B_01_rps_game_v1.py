@@ -19,7 +19,6 @@ def int_check(question):
             
         except ValueError:
             print(error)
-    
 
 # Main Routine Starts here
 
@@ -38,7 +37,7 @@ num_rounds = int_check("How many rounds would you like? Push <enter> for inifint
 
 
 if num_rounds == "infinite":
-    mode = "inifinte"
+    mode = "infinite"
     num_rounds = 5
 
 # Game loop starts here
