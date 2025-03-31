@@ -109,8 +109,11 @@ while rounds_played < num_rounds:
     print(rounds_heading)
     print()
 
-    user_choice = string_checker("Choose: ")
+    # get user choice
+    user_choice = string_checker("Choose:", rps_list)
+    print("you chose", user_choice)
 
+    # if user choice is the exit code, break the loop
     if user_choice == "xxx":
         break
 
