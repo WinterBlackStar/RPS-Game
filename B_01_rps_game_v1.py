@@ -76,31 +76,33 @@ def rps_compare(user, comp):
     
     # If the user and the computer choice the same, it's a tie
     if user == comp:
-        result = "tie"
+        round_result = "tie"
 
     # There are three ways to win
     elif user == "paper" and comp == "rock":
-        result = "win"
+        round_result = "win"
     elif user == "scissors" and comp == "paper":
-        result = "win"
+        round_result = "win"
     elif user == "rock" and comp == "scissors":
-        result = "win"
+        round_result = "win"
         
     # if it's not a win / tie, then it's a loss
     else:
-        result = "lose"
+        round_result = "lose"
 
-    return result
+    return round_result
 
 # Main Routine Starts here
 
 # Initialise game variables
-
 mode = "regular"
+
 rounds_played = 0
+rounds_tied = 0
+rounds_lost = 0
 
 rps_list = ["rock", "paper", "sciccors", "xxx"]
-
+game_history = []
 
 print()
 print("✂️ 📄💎 Rock / Paper / Scissors Game💎📄✂️")
@@ -133,6 +135,9 @@ while rounds_played < num_rounds:
     print(rounds_heading)
     print()
 
+    # randomly choose from the rps list (excluding the exit code)
+    comp_choice = random.choice(rps_list[:-1])
+
     # get user choice
     user_choice = string_checker("Choose:", rps_list)
     print("you chose", user_choice)
@@ -141,11 +146,25 @@ while rounds_played < num_rounds:
     if user_choice == "xxx":
         break
 
-    # randomly choose from the rps list (excluding the exit code)
-    comp_choice = random.choice(rps_list[:-1])
-
     results = rps_compare(user_choice, comp_choice)
-    print(f"{user_choice} vs {comp_choice}, {results}")
+
+    # Ajust game lost / game tied counters and add results to game history
+    if results == "tie":
+        rounds_tied += 1
+        feedback = "👔👔It's a tie👔👔!"
+    elif results == "lose":
+        rounds_lost += 1
+        feedback = "😢😢You lose😢😢"
+    else:
+        feedback = "👍👍You won👍👍"
+
+    # Set up sound feedback and output it user.
+    # Add it to the game history list (include the round number)
+    round_feedback = (f"{user_choice} vs {comp_choice}, {feedback}")
+    history_item = f"round: {rounds_played} - {round_feedback}"
+
+    print(round_feedback)
+    game_history.append(history_item)
 
     rounds_played += 1
 
