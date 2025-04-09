@@ -101,7 +101,7 @@ rounds_played = 0
 rounds_tied = 0
 rounds_lost = 0
 
-rps_list = ["rock", "paper", "sciccors", "xxx"]
+rps_list = ["rock", "paper", "scissors", "xxx"]
 game_history = []
 
 print()
