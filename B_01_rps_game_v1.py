@@ -176,3 +176,15 @@ while rounds_played < num_rounds:
 # Game loop ends here
 
 # Game History / Statistics area
+
+# Calculate statistics
+rounds_won = rounds_played - rounds_tied - rounds_lost
+percent_won = rounds_won / rounds_played * 100
+percent_lost = rounds_lost / rounds_played * 100
+percent_tied = 100 - percent_won - percent_lost
+
+# Output game statistics
+print("Game statistics")
+print(f"Won: {percent_won:.2f}" \
+      f"Lost: {percent_lost:.2f}" \
+      f"Tied: {percent_tied:.2f}")
