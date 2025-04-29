@@ -205,5 +205,5 @@ if rounds_played > 0:
         print()
         print("Thanks for playing.")
 
-    else:    
-        print("🐓🐓🐓Oops - You chickened out!🐓🐓🐓")
+else:    
+    print("🐓🐓🐓Oops - You chickened out!🐓🐓🐓")
