@@ -128,9 +128,12 @@ while rounds_played < num_rounds:
 
     # Round headings
     if mode == "infinite":
-        rounds_heading = f"\n000 rounds {rounds_played + 1} (Infinite Mode) 000"
+        rounds_heading = f"\n000 rounds {rounds_played + 1} of {num_rounds} (Infinite Mode) 000"
+        # if users are in infinite mode, increase number of rounds!
+        num_rounds += 1
     else:
         rounds_heading = f"\n 💿💿💿 round {rounds_played + 1} of {num_rounds} 💿💿💿"
+
 
     print(rounds_heading)
     print()
@@ -161,7 +164,7 @@ while rounds_played < num_rounds:
     # Set up sound feedback and output it user.
     # Add it to the game history list (include the round number)
     round_feedback = (f"{user_choice} vs {comp_choice}, {feedback}")
-    history_item = f"round: {rounds_played} - {round_feedback}"
+    history_item = f"Round: {rounds_played + 1} - {round_feedback}"
 
     print(round_feedback)
     game_history.append(history_item)
@@ -177,14 +180,30 @@ while rounds_played < num_rounds:
 
 # Game History / Statistics area
 
-# Calculate statistics
-rounds_won = rounds_played - rounds_tied - rounds_lost
-percent_won = rounds_won / rounds_played * 100
-percent_lost = rounds_lost / rounds_played * 100
-percent_tied = 100 - percent_won - percent_lost
 
-# Output game statistics
-print("Game statistics")
-print(f"Won: {percent_won:.2f}" \
-      f"Lost: {percent_lost:.2f}" \
-      f"Tied: {percent_tied:.2f}")
+
+if rounds_played > 0:
+
+    # Calculate statistics
+    rounds_won = rounds_played - rounds_tied - rounds_lost
+    percent_won = rounds_won / rounds_played * 100
+    percent_lost = rounds_lost / rounds_played * 100
+    percent_tied = 100 - percent_won - percent_lost
+
+    # Output game statistics
+    print("📊📊📊Game Statistics📊📊📊")
+    print(f"👍Won: {percent_won:.2f} \t " \
+        f"😢Lost: {percent_lost:.2f} \t " \
+        f"👔Tied: {percent_tied:.2f}")
+
+    # ask user if they want to see their game history and output it if requested.
+    see_history = string_checker("Do you want to see your game history? ")
+    if see_history == "yes":
+        for item in game_history:
+            print(item)
+
+        print()
+        print("Thanks for playing.")
+
+    else:    
+        print("🐓🐓🐓Oops - You chickened out!🐓🐓🐓")
